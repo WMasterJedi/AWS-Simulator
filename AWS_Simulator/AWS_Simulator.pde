@@ -18,6 +18,7 @@ int start = 0;
 SoundFile warn;
 SoundFile clear;
 SoundFile click;
+SoundFile clickWB;
 PImage d0;
 PImage d1;
 PImage d2;
@@ -36,6 +37,7 @@ void setup()
   warn = new SoundFile(this, "Audio/Speaker/warn.wav");
   clear = new SoundFile(this, "Audio/Speaker/clear.wav");
   click = new SoundFile(this, "Audio/Dial/click.wav");
+  clickWB = new SoundFile(this, "Audio/Dial/clickWB.wav");
 }
 
 void keyPressed() {
@@ -70,7 +72,7 @@ void draw()
       MGStart = 1;
       if(black == 0){
         stop2 = 0;
-        click.play();
+        clickWB.play();
       }
       clear.play();
     }
@@ -112,6 +114,7 @@ void draw()
     if(startB == 0){
       startB = 1;
       stop2 = 0;
+      clickWB.play();
     } 
     if(startup == 0 && black == 1){
       startup = 1;
