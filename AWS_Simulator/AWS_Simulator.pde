@@ -2,9 +2,11 @@ import processing.sound.*;
 int val = 0;
 int startB = 0;
 int val2 = 0;
+int TSOlit = 0;
 int MC = 0;
 int MG = 0;
 int black = 0;
+int startingup = 0;
 int WStart = 0;
 int MCStart = 0;
 int MGStart = 0;
@@ -19,10 +21,14 @@ SoundFile warn;
 SoundFile clear;
 SoundFile click;
 SoundFile clickWB;
+SoundFile clickTSO;
 PImage d0;
 PImage d1;
 PImage d2;
 PImage d3;
+PImage TPWSpanel;
+PImage TPWSpanellit;
+PImage TPWSpanelTSO;
 
 void setup() 
 {
@@ -31,13 +37,14 @@ void setup()
   d1 = loadImage("Image/Dial/d1.png");
   d2 = loadImage("Image/Dial/d2.png");
   d3 = loadImage("Image/Dial/d3.png");
-  background(55);
-  imageMode(CENTER);
-  image(d0, 350, 250, 200, 200);
+  TPWSpanel = loadImage("Image/TPWS/tpwspanel.png");
+  TPWSpanellit = loadImage("Image/TPWS/tpwspanellit.png");
+  TPWSpanelTSO = loadImage("Image/TPWS/tpwspanelTSO.png");
   warn = new SoundFile(this, "Audio/Speaker/warn.wav");
   clear = new SoundFile(this, "Audio/Speaker/clear.wav");
   click = new SoundFile(this, "Audio/Dial/click.wav");
   clickWB = new SoundFile(this, "Audio/Dial/clickWB.wav");
+  clickTSO = new SoundFile(this, "Audio/TPWS/TSOclick.wav");
 }
 
 void keyPressed() {
@@ -106,12 +113,19 @@ void draw()
     clearplay = 0;
     background(55);
     imageMode(CENTER);
-    image(d0, 350, 250, 200, 200);
+    if(TSOlit == 1){
+      image(TPWSpanelTSO, 600, 150, 400, 191);
+    }
+    if(TSOlit == 0){
+      image(TPWSpanel, 600, 150, 400, 191);
+    }
+    image(d0, 150, 150, 200, 200);
     val = 0;
   }
   if(startupstart == 1){
     if(startB == 0){
       startB = 1;
+      startingup = 1;
       stop2 = 0;
       clickWB.play();
     } 
@@ -139,13 +153,41 @@ void draw()
     imageMode(CENTER);
   }
   if(val == 4){
-    image(d2, 350, 250, 200, 200);
+    image(d2, 150, 150, 200, 200);
+    if(startingup == 1){
+      image(TPWSpanellit, 600, 150, 400, 191);
+    }
+    if(startingup == 0 && TSOlit == 0){
+      image(TPWSpanel, 600, 150, 400, 191);
+    }
+    if(startingup == 0 && TSOlit == 1){
+      image(TPWSpanelTSO, 600, 150, 400, 191);
+    }
   }
   if(val == 8){
-    image(d1, 350, 250, 200, 200);
+    image(d1, 150, 150, 200, 200);
+    if(startingup == 1){
+      image(TPWSpanellit, 600, 150, 400, 191);
+    }
+    if(startingup == 0 && TSOlit == 0){
+      image(TPWSpanel, 600, 150, 400, 191);
+    }
+    if(startingup == 0 && TSOlit == 1){
+      image(TPWSpanelTSO, 600, 150, 400, 191);
+    }
   }
   if(val == 12){
-    image(d0, 350, 250, 200, 200);
+    startingup = 0;
+    image(d0, 150, 150, 200, 200);
+    if(startingup == 1){
+      image(TPWSpanellit, 600, 150, 400, 191);
+    }
+    if(startingup == 0 && TSOlit == 0){
+      image(TPWSpanel, 600, 150, 400, 191);
+    }
+    if(startingup == 0 && TSOlit == 1){
+      image(TPWSpanelTSO, 600, 150, 400, 191);
+    }
     black = 0;
     stop = 1;
     val = 0;
@@ -156,15 +198,81 @@ void draw()
     imageMode(CENTER);
   }
   if(val2 == 4){
-    image(d1, 350, 250, 200, 200);
+    image(d1, 150, 150, 200, 200);
+    if(startingup == 1){
+      image(TPWSpanellit, 600, 150, 400, 191);
+    }
+    if(startingup == 0 && TSOlit == 0){
+      image(TPWSpanel, 600, 150, 400, 191);
+    }
+    if(startingup == 0 && TSOlit == 1){
+      image(TPWSpanelTSO, 600, 150, 400, 191);
+    }
   }
   if(val2 == 8){
-    image(d2, 350, 250, 200, 200);
+    image(d2, 150, 150, 200, 200);
+    if(startingup == 1){
+      image(TPWSpanellit, 600, 150, 400, 191);
+    }
+    if(startingup == 0 && TSOlit == 0){
+      image(TPWSpanel, 600, 150, 400, 191);
+    }
+    if(startingup == 0 && TSOlit == 1){
+      image(TPWSpanelTSO, 600, 150, 400, 191);
+    }
   }
   if(val2 == 12){
-    image(d3, 350, 250, 200, 200);
+    image(d3, 150, 150, 200, 200);
+    if(startingup == 1){
+      image(TPWSpanellit, 600, 150, 400, 191);
+    }
+    if(startingup == 0 && TSOlit == 0){
+      image(TPWSpanel, 600, 150, 400, 191);
+    }
+    if(startingup == 0 && TSOlit == 1){
+      image(TPWSpanelTSO, 600, 150, 400, 191);
+    }
     black = 1;
     stop2 = 1;
     val2 = 0;
+  }
+}
+
+boolean isMouseOver(int x, int y, int w, int h){
+  if(mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y + h){
+    return  true;
+  }
+  return false;
+}
+
+void mousePressed(){
+  if(isMouseOver(655, 115, 60, 60) == true){
+    clickTSO.play();
+    TSOlit++;
+    if(TSOlit >= 2){
+      TSOlit = 0;
+    }
+    if(TSOlit == 1){
+      background(55);
+      imageMode(CENTER);
+      image(TPWSpanelTSO, 600, 150, 400, 191);
+      if(black == 1){
+        image(d3, 150, 150, 200, 200);
+      }
+      if(black == 0){
+        image(d0, 150, 150, 200, 200);
+      }
+    }
+    if(TSOlit == 0){
+      background(55);
+      imageMode(CENTER);
+      image(TPWSpanel, 600, 150, 400, 191);
+      if(black == 1){
+        image(d3, 150, 150, 200, 200);
+      }
+      if(black == 0){
+        image(d0, 150, 150, 200, 200);
+      }
+    }
   }
 }
