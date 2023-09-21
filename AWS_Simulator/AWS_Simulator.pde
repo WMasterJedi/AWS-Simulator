@@ -98,7 +98,6 @@ void draw()
   if(MG == 0){
     MGStart = 0;
   }
-  println(startupstart);
   if(startupstart == 0){
     stop = 1;
     startB = 0;
